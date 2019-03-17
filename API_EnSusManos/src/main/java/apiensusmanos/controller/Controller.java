@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import apiensusmanos.model.entity.Ciudadano;
 import apiensusmanos.model.entity.Evento;
-<<<<<<< HEAD
 import apiensusmanos.model.entity.RegistrarEvento;
 import org.omg.CORBA.PUBLIC_MEMBER;
-=======
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
 import org.springframework.http.MediaType;
 
 @RestController
@@ -61,7 +58,6 @@ public class Controller {
     public ResponseEntity<String> crearActualizarEvento(@RequestBody Evento evento) {
         String resultado = eventoServicio.crearEvento(evento);
         return new ResponseEntity<String>(resultado, HttpStatus.OK);
-<<<<<<< HEAD
     }
 
     @RequestMapping(value = "/eventos/", method = RequestMethod.GET)
@@ -100,30 +96,5 @@ public class Controller {
     }
     
     
-=======
-    }
-
-    @RequestMapping(value = "/eventos/", method = RequestMethod.GET)
-    public ResponseEntity<List<Evento>> obtenerEventos() {
-        List<Evento> listaEventos = eventoServicio.obtenerEventos();
-        return new ResponseEntity<List<Evento>>(listaEventos, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/eventos/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Evento> obtenerEventosporId(@PathVariable("id") int id) {
-        Evento resultadoEvento = eventoServicio.obtenerCiudadanoPorId(id);
-        return new ResponseEntity<Evento>(resultadoEvento, HttpStatus.OK);
-    }
-    
-    @RequestMapping(value = "/eventos/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> eliminarEvento(@PathVariable int id) {
-        String eliminarEventoRespuesta = eventoServicio.eliminarEvento(id);
-        return new ResponseEntity<String>(eliminarEventoRespuesta, HttpStatus.OK);
-    }
-
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Servicio Registro Evento">
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
     //</editor-fold>
 }

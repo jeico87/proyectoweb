@@ -49,19 +49,11 @@ public class RegistrarEvento {
     @JoinColumn(name = "evento")
     private Evento evento;
 
-<<<<<<< HEAD
     public Integer getIdRegistroEvento() {
         return IdRegistroEvento;
     }
 
     public void setIdRegistroEvento(Integer IdRegistroEvento) {
-=======
-    public int getIdRegistroEvento() {
-        return IdRegistroEvento;
-    }
-
-    public void setIdRegistroEvento(int IdRegistroEvento) {
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
         this.IdRegistroEvento = IdRegistroEvento;
     }
 
@@ -81,7 +73,6 @@ public class RegistrarEvento {
         this.UbicacionRegistoEvento = UbicacionRegistoEvento;
     }
 
-<<<<<<< HEAD
     public String getFotoRegistroEvento() {
         return FotoRegistroEvento;
     }
@@ -124,13 +115,4 @@ public class RegistrarEvento {
 
     
     
-=======
-    public long getFotoRegistroEvento() {
-        return FotoRegistroEvento;
-    }
-
-    public void setFotoRegistroEvento(long FotoRegistroEvento) {
-        this.FotoRegistroEvento = FotoRegistroEvento;
-    }
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
 }

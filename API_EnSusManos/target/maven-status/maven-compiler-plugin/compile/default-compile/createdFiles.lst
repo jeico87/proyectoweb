@@ -8,10 +8,7 @@ apiensusmanos\model\dao\EventoRepositorio.class
 apiensusmanos\controller\CiudadanoServicio.class
 apiensusmanos\controller\EventoServicio.class
 apiensusmanos\controller\settings\InitConfiguration.class
-<<<<<<< HEAD
 apiensusmanos\model\dao\RegistrarEventoRepositorio.class
 apiensusmanos\controller\RegistrarEventoServicio.class
-=======
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
 apiensusmanos\model\entity\Evento.class
 apiensusmanos\model\entity\RegistrarEvento.class

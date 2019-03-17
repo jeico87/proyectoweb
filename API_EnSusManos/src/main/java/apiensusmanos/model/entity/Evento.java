@@ -30,13 +30,8 @@ public class Evento {
     @Column
     private Integer puntajeEvento;
 
-<<<<<<< HEAD
     @OneToMany(mappedBy = "evento" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistrarEvento> listaRegistrarEvento;
-=======
-//    @OneToMany(mappedBy = "evento" , cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<RegistrarEvento> listaRegistrarEvento;
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
 
     public Evento() {
     }
@@ -63,7 +58,6 @@ public class Evento {
 
     public void setPuntajeEvento(Integer puntajeEvento) {
         this.puntajeEvento = puntajeEvento;
-<<<<<<< HEAD
     }
 
     public List<RegistrarEvento> getListaRegistrarEvento() {
@@ -72,7 +66,5 @@ public class Evento {
 
     public void setListaRegistrarEvento(List<RegistrarEvento> listaRegistrarEvento) {
         this.listaRegistrarEvento = listaRegistrarEvento;
-=======
->>>>>>> 18d4e7acbf51e68459cab81570d660c72cb8aaa1
     }
 }
