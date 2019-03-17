@@ -16,39 +16,48 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ciudadano")
+@Table(name = "ciudadano")
 public class Ciudadano {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer Id;
-       
+
     @Column
     private String NombreCiudadano;
-    
+
     @Column
     private String ApellidoCiudadano;
-    
+
     @Column
     private String DireccionCiudadano;
-    
+
     @Column
     private int TelefonoCiudadano;
-    
+
     @Column
     private int CelularCiudadano;
-    
+
     @Column
     private String MailCiudadano;
-    
+
     @Column
     private String ContraseniaCiudadano;
-    
+
     @Column
     private int PuntajeCiudadano;
-    
-    @OneToMany(mappedBy = "ciudadano")//, cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "ciudadano", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistrarEvento> listaRegistrarEvento;
+
+    public List<RegistrarEvento> getListaRegistrarEvento() {
+        return listaRegistrarEvento;
+    }
+
+    public void setListaRegistrarEvento(List<RegistrarEvento> listaRegistrarEvento) {
+        this.listaRegistrarEvento = listaRegistrarEvento;
+    }
 
     public Ciudadano() {
     }

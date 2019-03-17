@@ -1,1 +1,14 @@
+apiensusmanos\controller\settings\HibernateConfiguration.class
+apiensusmanos\controller\settings\RestInitializer.class
+apiensusmanos\controller\settings\CORSFilter.class
+apiensusmanos\model\entity\Ciudadano.class
+apiensusmanos\model\dao\CiudadanoRepositorio.class
+apiensusmanos\controller\Controller.class
+apiensusmanos\model\dao\EventoRepositorio.class
 apiensusmanos\controller\CiudadanoServicio.class
+apiensusmanos\controller\EventoServicio.class
+apiensusmanos\controller\settings\InitConfiguration.class
+apiensusmanos\model\dao\RegistrarEventoRepositorio.class
+apiensusmanos\controller\RegistrarEventoServicio.class
+apiensusmanos\model\entity\Evento.class
+apiensusmanos\model\entity\RegistrarEvento.class

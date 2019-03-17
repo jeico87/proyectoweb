@@ -21,7 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CiudadanoRepositorio {
 
-    @Autowired
+    //<editor-fold defaultstate="collapsed" desc="Session Factory">
+     @Autowired
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
@@ -34,7 +35,9 @@ public class CiudadanoRepositorio {
 
     public CiudadanoRepositorio() {
     }
-
+    //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="Metodos Servicio">
     public String crearCiudadano(Ciudadano ciudadano) {
         Session session = sessionFactory.openSession();
         if (ciudadano.getId() != null) {
@@ -61,7 +64,7 @@ public class CiudadanoRepositorio {
             } catch (HibernateException ex) {
                 ex.printStackTrace();
                 session.getTransaction().rollback();
-                return "Error al Crear Ciudadadno. " + ciudadano.getId();
+                return "Error al Crear Ciudadano. " + ciudadano.getId();
             }
         }
     }
@@ -79,22 +82,20 @@ public class CiudadanoRepositorio {
 
     public String eliminarCiudadano(int id) {
         Session session = sessionFactory.getCurrentSession();
+        Transaction tn = session.beginTransaction();
         Ciudadano ciudadano = (Ciudadano) session.get(Ciudadano.class, id);
         boolean eliminado = false;
         if (ciudadano != null) {
             String cadena = "Id: " + ciudadano.getId() + "  Nombre: " + ciudadano.getNombreCiudadano() + " " + ciudadano.getApellidoCiudadano();
             try {
-                Transaction tn = session.beginTransaction();
-                tn
-                tn.
-                tn.delete(ciudadano);
+                session.delete(ciudadano);
                 tn.commit();
-                session.close();
                 eliminado = true;
             } catch (HibernateException ex) {
                 ex.printStackTrace();
-                tn.getTransaction().rollback();
+                tn.rollback();
             }
+             session.close();
             if (eliminado) {
                 return "Ciudadano Eliminado: " + cadena;
             }
@@ -105,4 +106,5 @@ public class CiudadanoRepositorio {
             return "Ciudadano no existe: " + id;
         }
     }
+    //</editor-fold>
 }
