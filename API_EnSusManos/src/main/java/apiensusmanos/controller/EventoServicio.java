@@ -7,6 +7,7 @@ package apiensusmanos.controller;
 
 import apiensusmanos.model.dao.EventoRepositorio;
 import apiensusmanos.model.entity.Evento;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,5 +20,17 @@ public class EventoServicio {
     public String crearEvento(Evento evento){
         String respuesta = eventoRepositorio.crearEvento(evento);
         return respuesta;
+    }
+    
+    public List<Evento> obtenerEventos(){
+        return eventoRepositorio.obtenerEventos();
+    }
+    
+    public Evento obtenerCiudadanoPorId(int id){
+        return eventoRepositorio.obtenerEventoPorId(id);
+    }
+    
+    public String eliminarEvento(int id){
+        return eventoRepositorio.eliminarEvento(id);
     }
 }

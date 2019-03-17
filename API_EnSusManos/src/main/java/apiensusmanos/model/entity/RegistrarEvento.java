@@ -36,4 +36,36 @@ public class RegistrarEvento {
     @ManyToOne
     @JoinColumn(name="evento")
     private Evento evento;
+
+    public int getIdRegistroEvento() {
+        return IdRegistroEvento;
+    }
+
+    public void setIdRegistroEvento(int IdRegistroEvento) {
+        this.IdRegistroEvento = IdRegistroEvento;
+    }
+
+    public Date getFechaRegistroEvento() {
+        return FechaRegistroEvento;
+    }
+
+    public void setFechaRegistroEvento(Date FechaRegistroEvento) {
+        this.FechaRegistroEvento = FechaRegistroEvento;
+    }
+
+    public String getUbicacionRegistoEvento() {
+        return UbicacionRegistoEvento;
+    }
+
+    public void setUbicacionRegistoEvento(String UbicacionRegistoEvento) {
+        this.UbicacionRegistoEvento = UbicacionRegistoEvento;
+    }
+
+    public long getFotoRegistroEvento() {
+        return FotoRegistroEvento;
+    }
+
+    public void setFotoRegistroEvento(long FotoRegistroEvento) {
+        this.FotoRegistroEvento = FotoRegistroEvento;
+    }
 }

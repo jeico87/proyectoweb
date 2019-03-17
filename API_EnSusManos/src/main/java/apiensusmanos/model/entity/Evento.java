@@ -22,26 +22,25 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdEvento")
-    private int IdEvento;
+    private Integer IdEvento;
 
     @Column
     private String nombreEvento;
 
     @Column
-    private int PuntajeEvento;
+    private Integer puntajeEvento;
 
-    //pendiente por revisar
-    @OneToMany(mappedBy = "evento" , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RegistrarEvento> listaRegistrarEvento;
+//    @OneToMany(mappedBy = "evento" , cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<RegistrarEvento> listaRegistrarEvento;
 
     public Evento() {
     }
 
-    public int getIdEvento() {
+    public Integer getIdEvento() {
         return IdEvento;
     }
 
-    public void setIdEvento(int IdEvento) {
+    public void setIdEvento(Integer IdEvento) {
         this.IdEvento = IdEvento;
     }
 
@@ -53,19 +52,11 @@ public class Evento {
         this.nombreEvento = nombreEvento;
     }
 
-    public int getPuntajeEvento() {
-        return PuntajeEvento;
+    public Integer getPuntajeEvento() {
+        return puntajeEvento;
     }
 
-    public void setPuntajeEvento(int PuntajeEvento) {
-        this.PuntajeEvento = PuntajeEvento;
-    }
-
-    public List<RegistrarEvento> getListaRegistrarEvento() {
-        return listaRegistrarEvento;
-    }
-
-    public void setListaRegistrarEvento(List<RegistrarEvento> listaRegistrarEvento) {
-        this.listaRegistrarEvento = listaRegistrarEvento;
+    public void setPuntajeEvento(Integer puntajeEvento) {
+        this.puntajeEvento = puntajeEvento;
     }
 }

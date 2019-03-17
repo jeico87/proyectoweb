@@ -47,8 +47,8 @@ public class Ciudadano {
     @Column
     private int PuntajeCiudadano;
     
-    @OneToMany(mappedBy = "ciudadano")//, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RegistrarEvento> listaRegistrarEvento;
+//    @OneToMany(mappedBy = "ciudadano" , cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<RegistrarEvento> listaRegistrarEvento;
 
     public Ciudadano() {
     }
@@ -124,4 +124,13 @@ public class Ciudadano {
     public void setPuntajeCiudadano(int PuntajeCiudadano) {
         this.PuntajeCiudadano = PuntajeCiudadano;
     }
+
+//    public List<RegistrarEvento> getListaRegistrarEvento() {
+//        return listaRegistrarEvento;
+//    }
+//
+//    public void setListaRegistrarEvento(List<RegistrarEvento> listaRegistrarEvento) {
+//        this.listaRegistrarEvento = listaRegistrarEvento;
+//    }
+    
 }
