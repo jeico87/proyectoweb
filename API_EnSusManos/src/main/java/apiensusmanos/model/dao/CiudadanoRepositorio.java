@@ -93,7 +93,7 @@ public class CiudadanoRepositorio {
                 eliminado = true;
             } catch (HibernateException ex) {
                 ex.printStackTrace();
-                tn.rollback();
+                //tn.rollback();
             }
              session.close();
             if (eliminado) {

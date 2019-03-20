@@ -34,10 +34,10 @@ public class Ciudadano {
     private String DireccionCiudadano;
 
     @Column
-    private int TelefonoCiudadano;
+    private Integer TelefonoCiudadano;
 
     @Column
-    private int CelularCiudadano;
+    private Integer CelularCiudadano;
 
     @Column
     private String MailCiudadano;
@@ -46,18 +46,10 @@ public class Ciudadano {
     private String ContraseniaCiudadano;
 
     @Column
-    private int PuntajeCiudadano;
+    private Integer PuntajeCiudadano;
 
     @OneToMany(mappedBy = "ciudadano", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RegistrarEvento> listaRegistrarEvento;
-
-    public List<RegistrarEvento> getListaRegistrarEvento() {
-        return listaRegistrarEvento;
-    }
-
-    public void setListaRegistrarEvento(List<RegistrarEvento> listaRegistrarEvento) {
-        this.listaRegistrarEvento = listaRegistrarEvento;
-    }
 
     public Ciudadano() {
     }
@@ -98,7 +90,7 @@ public class Ciudadano {
         return TelefonoCiudadano;
     }
 
-    public void setTelefonoCiudadano(int TelefonoCiudadano) {
+    public void setTelefonoCiudadano(Integer TelefonoCiudadano) {
         this.TelefonoCiudadano = TelefonoCiudadano;
     }
 
@@ -106,7 +98,7 @@ public class Ciudadano {
         return CelularCiudadano;
     }
 
-    public void setCelularCiudadano(int CelularCiudadano) {
+    public void setCelularCiudadano(Integer CelularCiudadano) {
         this.CelularCiudadano = CelularCiudadano;
     }
 
@@ -130,7 +122,7 @@ public class Ciudadano {
         return PuntajeCiudadano;
     }
 
-    public void setPuntajeCiudadano(int PuntajeCiudadano) {
+    public void setPuntajeCiudadano(Integer PuntajeCiudadano) {
         this.PuntajeCiudadano = PuntajeCiudadano;
     }
 }

@@ -43,12 +43,28 @@ public class RegistrarEvento {
     
     @ManyToOne
     @JoinColumn(name = "ciudadano", nullable = false)
-    private Ciudadano ciudadano = new Ciudadano();
+    private Ciudadano ciudadano;
 
     @ManyToOne
     @JoinColumn(name = "evento")
     private Evento evento;
 
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+    
     public Integer getIdRegistroEvento() {
         return IdRegistroEvento;
     }
@@ -96,23 +112,4 @@ public class RegistrarEvento {
     public void setIdEvento(Integer IdEvento) {
         this.IdEvento = IdEvento;
     }
-
-    public Ciudadano getCiudadano() {
-        return ciudadano;
-    }
-
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
-    }
-
-    
-    
 }

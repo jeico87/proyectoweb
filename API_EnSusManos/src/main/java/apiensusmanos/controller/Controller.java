@@ -79,6 +79,7 @@ public class Controller {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Servicio Registro Evento">
     @Autowired
     private RegistrarEventoServicio registrarEventoServicio;
