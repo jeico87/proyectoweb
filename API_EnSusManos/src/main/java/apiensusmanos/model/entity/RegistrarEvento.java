@@ -10,16 +10,20 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "registrarevento")
 public class RegistrarEvento {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer IdRegistroEvento;
 
@@ -32,21 +36,21 @@ public class RegistrarEvento {
     @Column
     private String FotoRegistroEvento;
 
-    @Column
+    @Transient
     private Integer IdCiudadano;
     
-    @Column
+    @Transient
     private Integer IdEvento;
 
     public RegistrarEvento() {
     }
     
     @ManyToOne
-    @JoinColumn(name = "ciudadano", nullable = false)
+    @JoinColumn(name = "IdCiudadano", nullable = false)
     private Ciudadano ciudadano;
 
     @ManyToOne
-    @JoinColumn(name = "evento")
+    @JoinColumn(name = "IdEvento")
     private Evento evento;
 
     public Ciudadano getCiudadano() {

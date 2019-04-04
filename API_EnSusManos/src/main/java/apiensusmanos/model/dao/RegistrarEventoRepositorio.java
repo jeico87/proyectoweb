@@ -38,41 +38,44 @@ public class RegistrarEventoRepositorio {
     //<editor-fold defaultstate="collapsed" desc="Metodos Servicio">
     @Autowired
     private CiudadanoRepositorio ciudadanoRepositorio;
-    
+
     @Autowired
     private EventoRepositorio eventoRepositorio;
-    
+
     public String RegistrarEvento(RegistrarEvento registrarEvento) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.saveOrUpdate(registrarEvento);
-        session.getTransaction().commit();
-        Integer id = registrarEvento.getIdRegistroEvento();
 
         Ciudadano getCiudadano = ciudadanoRepositorio.obtenerCiudadanoPorId(registrarEvento.getIdCiudadano());
-        Integer puntajeCiudadano = getCiudadano.getPuntajeCiudadano(); //Trae el puntaje del Ciudadano Actual
-        
+        registrarEvento.setCiudadano(getCiudadano);
         Evento evento = eventoRepositorio.obtenerEventoPorId(registrarEvento.getIdEvento());
+        registrarEvento.setEvento(evento);
+
+        
+        Integer puntajeCiudadano = getCiudadano.getPuntajeCiudadano(); //Trae el puntaje del Ciudadano Actual
+
         Integer puntajeEvento = evento.getPuntajeEvento(); //Trae el puntaje del evento actual
-        
-        Ciudadano ciudadano = new Ciudadano();
-        ciudadano.setId(registrarEvento.getIdCiudadano());
-        ciudadano.setPuntajeCiudadano(puntajeCiudadano + puntajeEvento); //Actualiza puntaje del ciudadano
-        
+        getCiudadano.setPuntajeCiudadano(puntajeCiudadano + puntajeEvento); //Actualiza puntaje del ciudadano
+
         String mensaje;
         Session sessionCiudadano = sessionFactory.openSession();
-        try {
+//        try {
             sessionCiudadano.beginTransaction();
-            sessionCiudadano.update(ciudadano); //Guarda el puntaje ciudadano actual
+            sessionCiudadano.merge(getCiudadano); //Guarda el puntaje ciudadano actual
             sessionCiudadano.getTransaction().commit();
             sessionCiudadano.close();
             mensaje = "Puntaje ciudadano actualizado con exito!.";
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            session.getTransaction().rollback();
-            mensaje =  "Error al Actualizar Puntaje Ciudadadno. " + ciudadano.getId();
-        }
-        return "Evento Registrado con el ID: " + id + mensaje;
+
+            Session sessionRegistrarEvento = sessionFactory.openSession();
+            sessionRegistrarEvento.beginTransaction();
+            sessionRegistrarEvento.save(registrarEvento);
+            sessionRegistrarEvento.getTransaction().commit();
+            sessionRegistrarEvento.close();
+            Integer id = registrarEvento.getIdRegistroEvento();
+////        } catch (HibernateException ex) {
+//            ex.printStackTrace();
+//            sessionCiudadano.getTransaction().rollback();
+//            mensaje = "Error al Actualizar Puntaje Ciudadadno. " + getCiudadano.getId();
+//        }
+        return "Evento Registrado con el ID: " + id + " " + mensaje;
     }
 
     public List<RegistrarEvento> obtenerRegistrarEventos() {
