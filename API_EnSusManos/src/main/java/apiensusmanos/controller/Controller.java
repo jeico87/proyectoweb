@@ -16,6 +16,7 @@ import apiensusmanos.model.entity.Evento;
 import apiensusmanos.model.entity.RegistrarEvento;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.http.MediaType;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/api")
@@ -25,13 +26,13 @@ public class Controller {
     @Autowired
     private CiudadanoServicio ciudadanoServicio;
 
-    @RequestMapping(value = "/ciudadanos/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/ciudadanos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> crearActualizarCiudadano(@RequestBody Ciudadano ciudadano) {
         String resultado = ciudadanoServicio.crearCiudadano(ciudadano);
         return new ResponseEntity<String>(resultado, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/ciudadanos/", method = RequestMethod.GET)
+    @RequestMapping(value = "/ciudadanos", method = RequestMethod.GET)
     public ResponseEntity<List<Ciudadano>> obtenerCiudadanos() {
         List<Ciudadano> listaCiudadanos = ciudadanoServicio.obtenerCiudadanos();
         return new ResponseEntity<List<Ciudadano>>(listaCiudadanos, HttpStatus.OK);
@@ -94,8 +95,22 @@ public class Controller {
     public ResponseEntity<List<RegistrarEvento>> obtenerRegistrarEvento() {
         List<RegistrarEvento> listaEventos = registrarEventoServicio.obtenerRegistrarEvento();
         return new ResponseEntity<List<RegistrarEvento>>(listaEventos, HttpStatus.OK);
+    }   
+    
+    @RequestMapping(value = "/registrarEvento/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<RegistrarEvento>> eventosPorCiudadano(@PathVariable("id") int id){
+        List<RegistrarEvento> listaEventos = registrarEventoServicio.eventosPorCiudadano(id);
+        return new ResponseEntity<List<RegistrarEvento>>(listaEventos, HttpStatus.OK);
     }
     
+    //</editor-fold>
     
+
+    //<editor-fold defaultstate="collapsed" desc="Servicio Registro Evento">
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> login(@RequestBody Ciudadano ciudadano) {
+        String resultado = ciudadanoServicio.loginCiudadano(ciudadano);
+        return new ResponseEntity<>(resultado, HttpStatus.OK);
+    }
     //</editor-fold>
 }

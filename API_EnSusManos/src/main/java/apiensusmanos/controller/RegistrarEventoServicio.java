@@ -34,4 +34,8 @@ public class RegistrarEventoServicio {
     public List<RegistrarEvento> obtenerRegistrarEvento(){
       return registrarEventoRepositorio.obtenerRegistrarEventos();
     }
+    
+    public List<RegistrarEvento> eventosPorCiudadano(Integer id){
+        return registrarEventoRepositorio.eventosPorCiudadano(id);
+    }
 }

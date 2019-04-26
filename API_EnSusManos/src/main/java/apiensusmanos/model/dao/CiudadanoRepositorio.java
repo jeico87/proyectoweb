@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CiudadanoRepositorio {
 
     //<editor-fold defaultstate="collapsed" desc="Session Factory">
-     @Autowired
+    @Autowired
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
@@ -36,36 +36,40 @@ public class CiudadanoRepositorio {
     public CiudadanoRepositorio() {
     }
     //</editor-fold>
-   
+
     //<editor-fold defaultstate="collapsed" desc="Metodos Servicio">
     public String crearCiudadano(Ciudadano ciudadano) {
         Session session = sessionFactory.openSession();
-        if (ciudadano.getId() != null) {
-            try {
-                session.beginTransaction();
-                session.saveOrUpdate(ciudadano);
-                session.getTransaction().commit();
-                Integer id = ciudadano.getId();
-                session.close();
-                return "Ciudadano Actualizado Id: " + id;
-            } catch (HibernateException ex) {
-                ex.printStackTrace();
-                session.getTransaction().rollback();
-                return "Error al Actualizar Ciudadadno. " + ciudadano.getId();
+        if (ciudadano.getId() != null || ciudadano.getNombreCiudadano() != null) {
+            if (ciudadano.getId() != null) {
+                try {
+                    session.beginTransaction();
+                    session.saveOrUpdate(ciudadano);
+                    session.getTransaction().commit();
+                    Integer id = ciudadano.getId();
+                    session.close();
+                    return "Ciudadano Actualizado Id: " + id;
+                } catch (HibernateException ex) {
+                    ex.printStackTrace();
+                    session.getTransaction().rollback();
+                    return "Error al Actualizar Ciudadadno. " + ciudadano.getId();
+                }
+            } else {
+                try {
+                    session.beginTransaction();
+                    session.saveOrUpdate(ciudadano);
+                    session.getTransaction().commit();
+                    Integer id = ciudadano.getId();
+                    session.close();
+                    return "Ciudadano Creado Id: " + id;
+                } catch (HibernateException ex) {
+                    ex.printStackTrace();
+                    session.getTransaction().rollback();
+                    return "Error al Crear Ciudadano. " + ciudadano.getId();
+                }
             }
         } else {
-            try {
-                session.beginTransaction();
-                session.saveOrUpdate(ciudadano);
-                session.getTransaction().commit();
-                Integer id = ciudadano.getId();
-                session.close();
-                return "Ciudadano Creado Id: " + id;
-            } catch (HibernateException ex) {
-                ex.printStackTrace();
-                session.getTransaction().rollback();
-                return "Error al Crear Ciudadano. " + ciudadano.getId();
-            }
+            return "Sin datos";
         }
     }
 
@@ -95,11 +99,10 @@ public class CiudadanoRepositorio {
                 ex.printStackTrace();
                 //tn.rollback();
             }
-             session.close();
+            session.close();
             if (eliminado) {
                 return "Ciudadano Eliminado: " + cadena;
-            }
-            else{
+            } else {
                 return "Error al Eliminar ciudadano: " + cadena;
             }
         } else {
@@ -107,4 +110,20 @@ public class CiudadanoRepositorio {
         }
     }
     //</editor-fold>
+
+    public String LoginCiudadano(Ciudadano setCiudadano) {
+        String respuesta = "";
+        Ciudadano ciudadano = obtenerCiudadanoPorId(setCiudadano.getId());
+        if (ciudadano != null) {
+            if (ciudadano.getContraseniaCiudadano().trim().equals(setCiudadano.getContraseniaCiudadano().trim())) {
+                respuesta = "ok";
+            } else {
+                respuesta = "Contraseña Inconrrecta!";
+            }
+        } else {
+            respuesta = "Ciudadano no existe.";
+        }
+
+        return respuesta;
+    }
 }
